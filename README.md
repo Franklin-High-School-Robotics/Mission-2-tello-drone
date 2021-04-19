@@ -52,7 +52,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Block Code][product-screenshot]
+![Block Code][product-screenshot]
 
 This is the repository for the Franklin High School's tello drone mission #2 code.
 
