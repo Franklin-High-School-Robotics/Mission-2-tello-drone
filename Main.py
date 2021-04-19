@@ -16,6 +16,7 @@ import Code.waypoint_class
 
 # EDIT HERE
 def main_function(waypoints, sock):
+    send('command', 3)
     send('takeoff', 5)
     send('left 100', 10 )
     send('cameraon', 3)
@@ -26,17 +27,21 @@ def main_function(waypoints, sock):
     send('flip b',5)
     send('back 50', 5)
     send('right 100', 10)
-    Cirlce()
-    semd('land')
+#     Circle()
+    send('right 200', 15)
+    send('curve 200 200 0 0 400 0', 10)
+    send('ccw 180')
+    send('curve 200 200 0 0 400 0', 10)
+    semd('land', 5)
 
 
     return
-def Cirlce():
-    send('right 200', 20)
+def Circle():
+    send('right 200', 15)
     for x in range(0,11):
         send('ccw 36', 4)
         send('forward 124', 10)
-    send('left 200', 20)
+    send('left 200', 15)
 
 ##############################################
 # DO NOT EDIT ANYTHING BELOW HERE
