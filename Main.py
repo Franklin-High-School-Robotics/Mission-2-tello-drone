@@ -19,9 +19,10 @@ def main_function(waypoints, sock):
     send('command', 3)
     send('takeoff', 5)
     send('left 100', 10 )
-    send('cameraon', 3)
+    send('speed?', 3) # general knowledge purposes, delete if not needed.
+    send('streamon', 3)
     send('cw 360', 5)
-    send('cameraoff', 3)
+    send('streamoff', 3)
     send('forward 50', 5)
     smed('flip f',5)
     send('flip b',5)
@@ -29,10 +30,12 @@ def main_function(waypoints, sock):
     send('right 100', 10)
 #     Circle()
     send('right 200', 15)
-    send('curve 200 200 0 0 400 0', 10)
+    send('curve 200 200 0 0 400 0 100', 14) # edit the last number in the string to chance speed. The number after the comma is the time delay
     send('ccw 180')
-    send('curve 200 200 0 0 400 0', 10)
-    semd('land', 5)
+    send('curve 200 200 0 0 400 0 100', 14) # edit the last number in the string to chance speed. The number after the comma is the time delay
+    send('land', 5)
+    send('battery?', 3) # general knowledge purposes, delete if not needed.
+    send('time?', 3) # general knowledge purposes, delete if not needed.
 
 
     return
