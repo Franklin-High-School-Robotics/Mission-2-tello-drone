@@ -11,40 +11,41 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 import scipy as sp
-import Code.waypoint_class
 
 
 # EDIT HERE
 def main_function(waypoints, sock):
     send('command', 3)
     send('takeoff', 5)
-    send('left 100', 10 )
-    send('speed?', 3) # general knowledge purposes, delete if not needed.
+    send('left 40', 5)
+    send('speed?', 3)  # general knowledge purposes, delete if not needed.
     send('streamon', 3)
     send('cw 360', 5)
     send('streamoff', 3)
-    send('forward 50', 5)
-    smed('flip f',5)
-    send('flip b',5)
-    send('back 50', 5)
-    send('right 100', 10)
-#     Circle()
+    send('forward 20', 5)
+    send('flip f', 5)
+    send('flip b', 5)
+    send('back 20', 5)
+    send('right 40', 5)
+    #     Circle()
     send('right 200', 15)
-    send('curve 200 200 0 0 400 0 100', 14) # edit the last number in the string to chance speed. The number after the comma is the time delay
-    send('ccw 180')
-    send('curve 200 200 0 0 400 0 100', 14) # edit the last number in the string to chance speed. The number after the comma is the time delay
+    send('curve 200 200 0 0 400 0 60', 19)  # edit the last number in the string to chance speed. The number after the comma is the time delay
+    send('ccw 180', 5)
+    send('curve 200 200 0 0 400 0 60', 19)  # edit the last number in the string to chance speed. The number after the comma is the time delay
+    send('left 200', 5)
     send('land', 5)
-    send('battery?', 3) # general knowledge purposes, delete if not needed.
-    send('time?', 3) # general knowledge purposes, delete if not needed.
-
-
+    send('battery?', 3)  # general knowledge purposes, delete if not needed.
+    send('time?', 3)  # general knowledge purposes, delete if not needed.
     return
+
+
 def Circle():
     send('right 200', 15)
-    for x in range(0,11):
+    for x in range(0, 11):
         send('ccw 36', 4)
         send('forward 124', 10)
     send('left 200', 15)
+
 
 ##############################################
 # DO NOT EDIT ANYTHING BELOW HERE
@@ -52,7 +53,6 @@ def Circle():
 
 
 def ex_main_function(waypoints, sock):
-
     ##################
     # DRAW plot first
     ##################
@@ -73,7 +73,7 @@ def ex_main_function(waypoints, sock):
     yaw_angle = 90
 
     # Yaw clockwise (right)
-    #yaw_direction = "cw"
+    # yaw_direction = "cw"
 
     # Put Tello into command mode
     send("command", 3)
@@ -118,13 +118,14 @@ def ex_main_function(waypoints, sock):
 tello_address = ('192.168.10.1', 8889)
 
 # IP and port of local computer
-local_address = ('', 9000)
+local_address = ('192.168.10.2', 9000)
 
 # Create a UDP connection that we'll send the command to
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # Bind to the local address and port
 sock.bind(local_address)
+
 
 # Send the message to Tello and allow for a delay in seconds
 
@@ -139,6 +140,7 @@ def send(message, delay):
 
     # Delay for a user-defined period of time
     time.sleep(delay)
+
 
 # Receive the message from Tello
 
@@ -157,19 +159,18 @@ def receive():
             break
 
 
-if __name__ == "main":
 
-    # Create and start a listening thread that runs in the background
-    # This utilizes our receive functions and will continuously monitor for incoming messages
-    receiveThread = threading.Thread(target=receive)
-    receiveThread.daemon = True
-    receiveThread.start()
+# Create and start a listening thread that runs in the background
+# This utilizes our receive functions and will continuously monitor for incoming messages
+receiveThread = threading.Thread(target=receive)
+receiveThread.daemon = True
+receiveThread.start()
 
-    waypoints = []  # This will contain an array of Waypoint class objects
+waypoints = []  # This will contain an array of Waypoint class objects
 
-    # Execute the actual algorithm
-    #ex_main_function(waypoints, sock)
-    main_function(waypoints, sock)
+# Execute the actual algorithm
+# ex_main_function(waypoints, sock)
+main_function(waypoints, sock)
 
-    # Close the socket
-    sock.close()
+# Close the socket
+sock.close()
