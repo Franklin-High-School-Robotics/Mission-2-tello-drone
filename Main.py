@@ -159,7 +159,7 @@ def receive():
             break
 
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     # Create and start a listening thread that runs in the background
     # This utilizes our receive functions and will continuously monitor for incoming messages
     receiveThread = threading.Thread(target=receive)
