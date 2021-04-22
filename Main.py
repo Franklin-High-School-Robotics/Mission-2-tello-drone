@@ -159,18 +159,18 @@ def receive():
             break
 
 
+if __name__ == "__main__"
+    # Create and start a listening thread that runs in the background
+    # This utilizes our receive functions and will continuously monitor for incoming messages
+    receiveThread = threading.Thread(target=receive)
+    receiveThread.daemon = True
+    receiveThread.start()
 
-# Create and start a listening thread that runs in the background
-# This utilizes our receive functions and will continuously monitor for incoming messages
-receiveThread = threading.Thread(target=receive)
-receiveThread.daemon = True
-receiveThread.start()
+    waypoints = []  # This will contain an array of Waypoint class objects
 
-waypoints = []  # This will contain an array of Waypoint class objects
+    # Execute the actual algorithm
+    # ex_main_function(waypoints, sock)
+    main_function(waypoints, sock)
 
-# Execute the actual algorithm
-# ex_main_function(waypoints, sock)
-main_function(waypoints, sock)
-
-# Close the socket
-sock.close()
+    # Close the socket
+    sock.close()
